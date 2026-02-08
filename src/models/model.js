@@ -1,5 +1,6 @@
 import { generateConfirmationCode } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
+import { numToMonth } from '../includes/helpers.js';
 
 // ROUTE MODEL FUNCTIONS
 
@@ -18,8 +19,12 @@ export const getListOfSeasons = async () => {
 };
 
 export const getRouteById = async (routeId) => {
-    return db().routes.find(route => route.id == routeId) || null;
-};
+      const route = db().routes.find(route => route.id == routeId);
+      if (!route) return null;
+
+      route.operatingMonths = route.operatingMonths.map(numToMonth);
+      return route;
+  };
 
 export const getRoutesByRegion = async (region) => {
     return db().routes.filter(route => route.region.toLowerCase() == region.toLowerCase());
