@@ -26,4 +26,9 @@ const yenToUsd = (yen) => {
     return yen * exchangeRate;
 };
 
-export { generateConfirmationCode, kmToMiles, yenToUsd };
+const numToMonth = (month) => {
+    const MONTH_NAME = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return MONTH_NAME[month];
+}
+
+export { generateConfirmationCode, kmToMiles, yenToUsd, numToMonth };
