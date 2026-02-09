@@ -22,8 +22,10 @@ export const getRouteById = async (routeId) => {
       const route = db().routes.find(route => route.id == routeId);
       if (!route) return null;
 
-      route.operatingMonths = route.operatingMonths.map(numToMonth);
-      return route;
+      return {
+          ...route,
+          operatingMonths: route.operatingMonths.map(numToMonth)
+      };
   };
 
 export const getRoutesByRegion = async (region) => {
